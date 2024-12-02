@@ -430,19 +430,28 @@
         <br>
         <div class="content has-text-justified">
           <p>
-            <b>Low hallucination rate while being informative</b>:
+            <b>Only highest-quality images are selected</b>:
           </p>
-          <ul>
-            <!-- <li>It has two types of queries (latent queries and text queries) and outputs (semantic outputs and pixel-level outputs).</li>
-            <li>It uses a single text encoder for all text corpus, ranging from class concepts, referring phrases to image captions.</li>
-            <li>It decouples image and text encoder to accomadate cross-image tasks (e.g., image-text retrieval) and within-image tasks (e.g., segmentation and captioning).</li> -->
-
-          </ul>
         </div>
-        <img id="model" width="80%" src="images/benchmark-2.png" alt="Main experimental results of PDS-DPO">
+        <img id="model" width="50%" src="images/selected-images.png" alt="Main experimental results of PDS-DPO">
+        <p style="font-size: small; font-style: italic; text-align: justify;">
+          The figure illustrates image generation results using Stable Diffusion across four different guidance scales (5.0, 7.0, 9.0, 11.0), with the highest-scored image selected for each prompt based on a preference model evaluation.
+        </p>
        <!--  <h3 class="subtitle has-text-centered">
           <p style="font-family:Times New Roman"></p>
         </h3> -->
+        <br>
+        <br>
+        
+        <div class="content has-text-justified">
+          <p>
+            <b>Only preferred responses with precise and meaningful answers are selected</b>:
+          </p>
+        </div>
+          <img id="model" width="80%" src="images/chosen-rejected-responses.png" alt="Main experimental results of PDS-DPO">
+          <p style="font-size: small; font-style: italic; text-align: justify;">
+            The figure compares preferred and dispreferred responses from multimodal models interpreting visual prompts. The preferred responses are concise and focused on relevant details, while the dispreferred ones include speculative, redundant, or unclear information. This highlights the quality distinctions in visual-linguistic task performance in the context of preference learning.
+          </p>
         <br>
         <br>
 
@@ -452,16 +461,6 @@
           </p>
         </div>
         <img id="model" width="80%" src="images/benchmark-1.png">
-
-        <br>
-        <br>
-
-        <div class="content has-text-justified">
-          <p>
-            <b>More resistant to over-generalization</b>:
-          </p>
-        </div>
-        <!-- <img id="model" width="80%" src="images/over-generalization.jpg"> -->
 
         <br>
         <br>
@@ -522,31 +521,31 @@
             <li><b>Short-form QA</b>: PDS-DPO can give a more trustworthy answer in short-form QA.</li>
           </ul>
         </div>
-        <!-- <img src="demos/case1.png" width="90%" alt=""> -->
+        <img src="images/Qual-1.png" width="40%" alt="">
         <div class="content has-text-justified">
           <ul>
             <li><b>Long-form QA</b>: PDS-DPO can generate informative image description with less hallucinations.</li>
           </ul>
         </div>
-        <!-- <img src="demos/case2.png" width="90%" alt=""> -->
+        <img src="images/Qual-2.png" width="70%" alt="">
         <div class="content has-text-justified">
           <ul>
             <li><b>Long-form QA</b>: PDS-DPO can provide detailed reasoning with less hallucinations.</li>
           </ul>
         </div>
-        <!-- <img src="demos/case3-1.png" width="90%" alt=""> -->
+        <img src="images/Qual-3.png" width="70%" alt="">
         <!-- <img src="demos/case3-2.png" width="90%" alt=""> -->
-        <div class="content has-text-justified">
+        <!-- <div class="content has-text-justified">
           <ul>
             <li><b>Long-form QA</b>: PDS-DPO is more resistant to over-generalization.</li>
           </ul>
-        </div>
+        </div> -->
         <!-- <img src="demos/case4.png" width="90%" alt=""> -->
-        <div class="content has-text-justified">
+        <!-- <div class="content has-text-justified">
           <ul>
             <li><b>Long-form QA</b>: PDS-DPO is more resistant to over-generalization.</li>
           </ul>
-        </div>
+        </div> -->
         <!-- <img src="demos/case5.png" width="90%" alt=""> -->
       </div>
       <!-- <div class="box"><div class="pic"><img src="demos/p7.png" alt=""></div></div>
