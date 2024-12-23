@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PDS-DPO">
+  <meta name="keywords" content="PDS-DPO, open-source, vision-language, MLLM, multimodal preference data synthetic alignment with reward model">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDS-DPO</title>
+  <link rel="icon" href="data:," type="image/x-icon">
+<link rel="shortcut icon" href="data:," type="image/x-icon">
+
+  <!-- Global site tag (gtag.js) - Google Analytics
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  </head>
+
+  <style>
+
+    #main{
+        position: relative;;
+        width: 1200px;
+    }
+
+    .box{
+        float: left;
+        padding: 15px 0 0 15px;
+/*        background-color: red;*/
+    }
+
+    .pic{
+        width: 500px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .pic img{
+        width: 500px;
+    }
+
+  </style>
+
+
+
+  <body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-2 publication-title">PDS-DPO</h2>
+          <h3 class="title is-4 publication-title">Multimodal Preference Data Synthetic Alignment with Reward Model</h3>
+          <div class="is-size-5">
+            <span class="author-block">
+                <a href="https://wijayarobert.github.io" style="color:#008AD7;font-weight:normal;">Robert Wijaya
+                </a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=zQPES6kAAAAJ&hl=vi" style="color:#008AD7;font-weight:normal;">Ngoc-Bao Nguyen</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://istd.sutd.edu.sg/people/faculty/ngai-man-man-cheung/" style="color:#008AD7;font-weight:normal;">Ngai-Man Cheung</a>
+            </span>
+            
+            <span class="author-block">
+          </div>
+
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Singapore University of Technology and Design</span>
+
+          <br>
+         <!--  <div class="is-size-5 publication-authors">
+            <span class="author-block"><b style="color:#e08ba0; font-weight:normal"> <b>In CVPR2023</b> </b></span>
+          </div> -->
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/pds-dpo/pds-dpo" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+<!--              <span class="link-block">-->
+<!--                      <a href="https://huggingface.co/spaces/##" target="_blank"-->
+<!--                         class="external-link button is-normal is-rounded is-dark">-->
+<!--                      <span class="icon">-->
+<!--                        🤗-->
+<!--                      </span>-->
+<!--                      <span>Space</span>-->
+<!--                    </a>-->
+<!--              </span>-->
+
+<!--              <span class="link-block">-->
+<!--                <a href="https://youtu.be/###" target="_blank"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                    <i class="fab fa-youtube"></i>-->
+<!--                  </span>-->
+<!--                  <span>Video</span>-->
+<!--                  </a>-->
+<!--              </span>-->
+
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/pdsdpo/pdsdpo-v1_0-data" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                  </a>
+              </span>
+
+             <span class="link-block">
+               <a href="https://huggingface.co/pdsdpo/PDS-DPO-7B" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                 <span class="icon">
+                   <i class="fa fa-laugh"></i>
+                 </span>
+                 <span>Model</span>
+                 </a>
+             </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            Thanks for your interest in our work. Currently, the number of users has exceeded our expectations. We provide <strong><font color="#008AD7">alternative demo links</font></strong> here:
+            <a href="https://b2517615b965687635.gradio.live" target="_blank">Demo1</a>
+            <a href="https://c8de8ff74b6a6c6a9b.gradio.live" target="_blank">Demo2</a>
+            <a href="https://90bc0bac96e6457e8f.gradio.live" target="_blank">Demo3</a>
+            <a href="https://cd772059965a71f9e6.gradio.live" target="_blank">Demo4</a>
+            <a href="https://48da7e23bcadec7551.gradio.live" target="_blank">Demo5</a>
+            <a href="https://687d119023cd37e5fb.gradio.live" target="_blank">Demo6</a>
+            <a href="https://0810e8582bcad31944.gradio.live" target="_blank">Demo7</a>
+            <a href="https://31c7cdb7e3594e851e.gradio.live" target="_blank">Demo8</a>
+
+            <strong><font>News</font></strong>: We now provide a pretrained MiniGPT-4 aligned with <strong><font color="#008AD7">Vicuna-7B</font></strong>! The demo GPU memory consumption now can be <strong><font color="#008AD7">as low as 12GB</font></strong>.
+            <br>
+            </p>
+        </div>
+      </div>
+    </div>
+</section>
+ -->
+
+<!-- <link rel="stylesheet" href="js/ft-carousel.css" />
+<script src="js/jquery.min.js"></script>
+<script src="js/ft-carousel.min.js"></script>
+<script type="text/javascript">
+  $("#carousel_1").FtCarousel();
+
+  $("#carousel_2").FtCarousel({
+    index: 1,
+    auto: false
+  });
+
+  $("#carousel_3").FtCarousel({
+    index: 0,
+    auto: true,
+    time: 3000,
+    indicators: false,
+    buttons: true
+  });
+</script> -->
+
+<!--
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <img src="demos/wop_2.png" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+        </h2>
+      </div>
+      <div class="item">
+        <img src="demos/cook_1.png" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+        </h2>
+      </div>
+      <div class="item">
+        <img src="demos/fix_1.png" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+       </h2>
+     </div>
+     <div class="item">
+      <img src="demos/rhyme_1.png" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+      </h2>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+ -->
+
+<link rel="stylesheet" type="text/css" href="js/simple_style.css" />
+<script type="text/javascript" src="js/simple_swiper.js"></script>
+
+
+<!-- <div class="app">
+  <div id="swiper-demo" class="simple-swiper-container">
+    <a id="prev" class="btn btn-prev"></a>
+    <a id="next" class="btn btn-next"></a>
+    <div class="pagination"></div>
+  </div>
+</div>
+<p id="index"></p>
+
+<script type="text/javascript">
+  new SimSwiper("#swiper-demo", {
+    autoplay: 4000,
+    duration: 300,
+    easing: 'ease',
+    button: {
+      prev: "#prev", // 前进后退按钮
+      next: "#next"
+    },
+    pagination: {
+      el: '.pagination',
+      click: true// 是否可以点击
+    },
+    // 轮播图数据
+    data: [{
+      index: 0,
+      href: '#',
+      src: 'demos/wop_2.png'
+    }, {
+      index: 1,
+      href: '#',
+      src: 'demos/cook_1.png'
+    }, {
+      index: 2,
+      href: '#',
+      src: 'demos/fix_1.png'
+    }, {
+      index: 3,
+      href: '#',
+      src: 'demos/rhyme_1.png'
+    }]
+  });
+</script> -->
+
+
+<section class="section interpolation-panel">
+  <div class="container">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-10">
+        <br>
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified" style="font-size: large;">
+          <p>
+            Multimodal large language models (MLLMs) have significantly advanced tasks like caption generation and visual question answering by integrating visual and textual data. However, they sometimes produce misleading or hallucinate content due to discrepancies between their pre-training data and real user prompts. Existing approaches using Direct Preference Optimization (DPO) in vision-language tasks often rely on strong models like GPT-4 or CLIP to determine positive and negative responses. Here, we propose a new DPO variant that leverages synthetic data from generative and reward models as proxies for human preferences to improve MLLM alignment efficiently. The resulting DPO dataset, ranging from 2K to 9K image-text pairs, was evaluated on LLaVA-v1.5-7B, where our approach demonstrated substantial improvements in both the trustworthiness and reasoning capabilities of the base model across multiple hallucination and vision-language benchmark. The experiment results indicate that integrating selected synthetic data, such as from generative and rewards models can effectively reduce reliance on human-annotated data while enhancing MLLMs' alignment capability, offering a scalable solution for safer deployment.
+          </p>
+        </div>
+      </div>
+    </div>
+   
+    <br>
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe width=“560” height=“315" src=“https://www.youtube.com/embed/__tftoxpBAw” title=“YouTube video player” frameborder=“0” allow=“accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share” allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+<!-- <section class="hero is-small is-light">
+    <div class="hero-body"> -->
+
+<!--
+        <div class="container">
+            <h2 class="title has-text-centered">Video Presentation</h2>
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+
+                    <div class="publication-video">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/__tftoxpBAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+ -->
+
+
+<!--     </div>
+</section> -->
+
+
+    <!--/ Demo. -->
+    <!-- <br>
+    <br>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Demo</h2>
+      </div>
+    </div>
+
+    <div class="column is-full-width">
+      <div class="columns is-centered">
+        <img id="teaser" width="90%" src="images/demo6_AdobeExpress.gif">
+      </div>
+      <div class="columns is-centered">
+      <h1>
+        <p style="font-family:Times New Roman"><b>X-GPT: Connecting generalist X-Decoder with GPT-3</b>
+      </h1>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="column is-full-width">
+      <div class="columns is-centered">
+        <img id="teaser" width="90%" src="images/inpaint.gif">
+      </div>
+      <div class="columns is-centered">
+      <h1>
+        <p style="font-family:Times New Roman"><b>Instruct-X-Decoder: Object-centric instructional image editing</b>
+      </h1>
+      </div>
+    </div> -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!--/ Paper video. -->
+    <br>
+    <br>
+    <!-- Paper Model. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            <b>The proposed PDS-DPO framework</b>:
+          </p>
+          
+        </div>
+        <img id="model" width="100%" src="images/pipeline.png", alt="Illustration of the PDS-DPO frmework">
+        <figcaption style="font-style: italic; margin-top: 10px; margin-left:10px; text-align:justify">Starting with an initial text-to-image prompt, the Stable Diffusion model generates synthetic images. These images are then filtered using a reward model to exclude low-quality samples and retain only those with the highest scores. The selected images, along with their corresponding instruction prompts, serve as input for open-source MLLMs to generate responses. These responses are evaluated based on various criteria, and only the highest-scoring ones are selected to identify the most suitable positive and negative pairs for DPO-based training.</figcaption>
+       <!--  <h3 class="subtitle has-text-centered">
+          <p style="font-family:Times New Roman"></p>
+        </h3> -->
+
+      </div>
+    </div>
+    <br>
+    <br>
+    <!--/ Paper video. -->
+        <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">Highlights</h2>
+        <br>
+        <div class="content has-text-justified">
+          <p>
+            <b>Our framework generates multiple images using Stable Diffusion and retains only the one with the highest scalar score as determined by the reward model</b>:
+          </p>
+          <ul>
+            <!-- <li>It has two types of queries (latent queries and text queries) and outputs (semantic outputs and pixel-level outputs).</li>
+            <li>It uses a single text encoder for all text corpus, ranging from class concepts, referring phrases to image captions.</li>
+            <li>It decouples image and text encoder to accomadate cross-image tasks (e.g., image-text retrieval) and within-image tasks (e.g., segmentation and captioning).</li> -->
+
+          </ul>
+        </div>
+        <img id="model" width="50%" src="images/selected-images.png" alt="Selected images by reward model">
+        <figcaption style="font-style: italic; margin-top: 10px; margin-left:10px; text-align:justify">The figure illustrates image generation results using Stable Diffusion across four different guidance scales (5.0, 7.0, 9.0, 11.0), with the highest-scored image selected for each prompt based on a preference model evaluation.</figcaption>
+       <!--  <h3 class="subtitle has-text-centered">
+          <p style="font-family:Times New Roman"></p>
+        </h3> -->
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Similar to the images, we rank the generated responses from open-source MLLMs and retain only the one that is preferred</b>:
+          </p>
+        </div>
+        <img id="model" width="80%" src="images/selected-responses.png">
+        <figcaption style="font-style: italic; margin-top: 10px; margin-left:10px; text-align:justify">The figure compares preferred and dispreferred responses from multimodal models interpreting visual prompts. The preferred responses are concise and focused on relevant details, while the dispreferred ones include speculative, redundant, or unclear information.</figcaption>
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Competitive results on both vision-language and hallucination task benchmarks</b>:
+          </p>
+        </div>
+        <img id="model" width="75%" src="images/results.png">
+
+        <br>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3">Citation</h2>
+    </div>
+    <pre><code>
+@article{2024pdsdpo,
+  author      = {Robert Wijaya and Ngoc-Bao Nguyen and Ngai-Man Cheung},
+  title       = {Multimodal Preference Data Synthetic Alignment with Reward Model},
+  journal      = {arxiv},
+  year         = {2024},
+}
+</code></pre>
+  </div>
+</section>
+
+<section class="section">
+  <!-- Results. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3">Examples</h2>
+    </div>
+  </div>
+  <!--/ Results. -->
+  <div class="container is-max-desktop">
+
+    <!-- <section class="section"> -->
+    <!-- <div id="main">
+      <div align="center" ><div align="center" ><img src="demos/case1.png" width="75%" alt=""></div></div>
+      <div align="center" ><div align="center" ><img src="demos/case2.png" width="75%" alt=""></div></div>
+      <div align="center" ><div align="center" ><img src="demos/case3-1.png" width="75%" alt=""></div></div>
+      <div align="center" ><div align="center" ><img src="demos/case3-2.png" width="75%" alt=""></div></div>
+      <div align="center" ><div align="center" ><img src="demos/case4.png" width="75%" alt=""></div></div>
+      <div align="center" ><div align="center" ><img src="demos/case5.png" width="75%" alt=""></div></div>
+      <!-- <div class="box"><div class="pic"><img src="demos/p7.png" alt=""></div></div>
+      <div class="box"><div class="pic"><img src="demos/p8.png" alt=""></div></div>
+      <div class="box"><div class="pic"><img src="demos/p9.png" alt=""></div></div>
+    </div> -->
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <div class="content has-text-justified">
+          <ul>
+            <li><b>Short-form QA</b>: PDS-DPO can give a more trustworthy answer in short-form QA.</li>
+          </ul>
+        </div>
+        <img src="images/example-2.png" width="80%" alt="">
+        <div class="content has-text-justified">
+          <ul>
+            <li><b>Long-form QA</b>: PDS-DPO can generate more concise but informative answer.</li>
+          </ul>
+        </div>
+        <img src="images/example-1.png" width="40%" alt="">
+        <div class="content has-text-justified">
+          <ul>
+            <li><b>Long-form QA</b>: PDS-DPO can provide image description with detailed reasoning and less hallucinations.</li>
+          </ul>
+        </div>
+        <img src="images/example-3.png" width="80%" alt="">
+       
+      <!-- <div class="box"><div class="pic"><img src="demos/p7.png" alt=""></div></div>
+      <div class="box"><div class="pic"><img src="demos/p8.png" alt=""></div></div>
+      <div class="box"><div class="pic"><img src="demos/p9.png" alt=""></div></div> -->
+    </div>
+  </div>
+</section>
+
+
+
+<!--
+<section class="section" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Acknowledgement</h2>
+    <p>
+      This website is adapted from <a
+      href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license"
+                                          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+  </div>
+</section>
+ -->
+
+
+
+<script src="js/Underscore-min.js"></script>
+<script src="js/index.js"></script>
+
+
+
+</body>
+
+</html>
