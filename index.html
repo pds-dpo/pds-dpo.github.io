@@ -4,8 +4,8 @@
   <meta name="google-site-verification" content="2Mp81NWVW8bm1fZOH4aKuilOrlf9tVw_VSMyBoX_eHU" />
   <meta charset="utf-8">
   <meta name="description"
-        content="PDS-DPO">
-  <meta name="keywords" content="PDS-DPO, open-source, vision-language, MLLM, multimodal preference data synthetic alignment with reward model">
+        content="PDS-DPO project page for synthetic preference data alignment in vision-language models.">
+  <meta name="keywords" content="PDS-DPO, SynthAlign, Synth-Align, open-source, vision-language, MLLM, multimodal preference data synthetic alignment with reward model">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PDS-DPO</title>
   <link rel="icon" href="data:," type="image/x-icon">
@@ -102,6 +102,10 @@
             <span class="author-block">Singapore University of Technology and Design</span>
 
           <br>
+          <span class="publication-note">
+            Updated arXiv version: <b>Synth-Align</b>. This project page keeps the original PDS-DPO title.
+          </span>
+          <br>
          <!--  <div class="is-size-5 publication-authors">
             <span class="author-block"><b style="color:#e08ba0; font-weight:normal"> <b>In CVPR2023</b> </b></span>
           </div> -->
@@ -150,7 +154,7 @@
 <!--              </span>-->
 
               <span class="link-block">
-                <a href="https://huggingface.co/datasets/pdsdpo/pdsdpo-v1_0-data" target="_blank"
+                <a href="https://huggingface.co/datasets/pdsdpo/synthalign-v1_0-data" target="_blank"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fa fa-database"></i>
@@ -171,6 +175,23 @@
 
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section update-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <h2 class="title is-3 has-text-centered">Updates</h2>
+        <div class="content">
+          <ul class="news-list">
+            <li><b>2025-11</b>: The arXiv paper was updated as <i>Synth-Align: Improving Trustworthiness in Vision-Language Model with Synthetic Preference Data Alignment</i>.</li>
+            <li><b>2025-04</b>: The dataset release was expanded with additional synthetic preference data, new categories, and improved quality responses.</li>
+            <li><b>2024-12</b>: Initial paper, code, model weights, and synthetic preference dataset were released.</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -253,10 +274,6 @@
 </section>
  -->
 
-<link rel="stylesheet" type="text/css" href="js/simple_style.css" />
-<script type="text/javascript" src="js/simple_swiper.js"></script>
-
-
 <!-- <div class="app">
   <div id="swiper-demo" class="simple-swiper-container">
     <a id="prev" class="btn btn-prev"></a>
@@ -310,7 +327,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified" style="font-size: large;">
           <p>
-            Multimodal large language models (MLLMs) have significantly advanced tasks like caption generation and visual question answering by integrating visual and textual data. However, they sometimes produce misleading or hallucinate content due to discrepancies between their pre-training data and real user prompts. Existing approaches using Direct Preference Optimization (DPO) in vision-language tasks often rely on strong models like GPT-4 or CLIP to determine positive and negative responses. Here, we propose a new DPO variant that leverages synthetic data from generative and reward models as proxies for human preferences to improve MLLM alignment efficiently. The resulting DPO dataset, ranging from 2K to 9K image-text pairs, was evaluated on LLaVA-v1.5-7B, where our approach demonstrated substantial improvements in both the trustworthiness and reasoning capabilities of the base model across multiple hallucination and vision-language benchmark. The experiment results indicate that integrating selected synthetic data, such as from generative and rewards models can effectively reduce reliance on human-annotated data while enhancing MLLMs' alignment capability, offering a scalable solution for safer deployment.
+            Large vision-language models (LVLMs) can integrate visual and textual information for tasks such as image captioning, visual question answering, and instruction following, but they remain vulnerable to hallucinated or weakly grounded responses. PDS-DPO addresses this problem by constructing synthetic image-text preference pairs for post-training alignment with Direct Preference Optimization. The pipeline uses generative models to create candidate images, reward models to select preferred images and responses, and DPO to align open-source LVLMs using compact preference subsets. In the updated Synth-Align version, the framework is evaluated across hallucination and vision-language benchmarks, showing improved trustworthiness and reduced hallucination while reducing reliance on manually annotated preference data.
           </p>
         </div>
       </div>
@@ -326,6 +343,41 @@
         </div>
       </div>
     </div> -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-10">
+        <h2 class="title is-3">Dataset and Resources</h2>
+        <div class="content has-text-justified">
+          <p>
+            The released data contains image paths, instruction prompts, chosen responses, and rejected responses for multimodal preference alignment. The Hugging Face release provides JSON-formatted preference pairs and a combined dataset viewer, while the paper evaluates controlled subsets ranging from small-scale data to the expanded release.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns resource-grid">
+      <div class="column">
+        <div class="resource-card">
+          <h3 class="title is-5">Preference Format</h3>
+          <p>Each example contains a visual prompt, a preferred response, and a dispreferred response, making it directly usable for DPO-style post-training.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="resource-card">
+          <h3 class="title is-5">Compact Alignment</h3>
+          <p>The dataset is designed to test whether a relatively small amount of carefully selected synthetic preference data can change LVLM behavior.</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="resource-card">
+          <h3 class="title is-5">Open Resources</h3>
+          <p>Code, model checkpoints, and the dataset are released to support reproducible synthetic-preference alignment experiments.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -400,7 +452,7 @@
           </p>
           
         </div>
-        <img id="model" width="100%" src="images/pipeline.png", alt="Illustration of the PDS-DPO frmework">
+        <img id="model" class="method-pipeline" width="100%" src="images/pipeline-updated.png" alt="Three-stage PDS-DPO framework for image rating, response rating, and DPO training">
         <figcaption style="font-style: italic; margin-top: 10px; margin-left:10px; text-align:justify">Starting with an initial text-to-image prompt, the Stable Diffusion model generates synthetic images. These images are then filtered using a reward model to exclude low-quality samples and retain only those with the highest scores. The selected images, along with their corresponding instruction prompts, serve as input for open-source MLLMs to generate responses. These responses are evaluated based on various criteria, and only the highest-scoring ones are selected to identify the most suitable positive and negative pairs for DPO-based training.</figcaption>
        <!--  <h3 class="subtitle has-text-centered">
           <p style="font-family:Times New Roman"></p>
@@ -439,23 +491,68 @@
             <b>Similar to the images, we rank the generated responses from open-source MLLMs and retain only the one that is preferred</b>:
           </p>
         </div>
-        <img id="model" width="80%" src="images/selected-responses.png">
+        <img id="model" width="80%" src="images/selected-responses.png" alt="Preferred and dispreferred response comparison">
         <figcaption style="font-style: italic; margin-top: 10px; margin-left:10px; text-align:justify">The figure compares preferred and dispreferred responses from multimodal models interpreting visual prompts. The preferred responses are concise and focused on relevant details, while the dispreferred ones include speculative, redundant, or unclear information.</figcaption>
         <br>
         <br>
 
-        <div class="content has-text-justified">
+        <div class="content has-text-justified results-intro">
           <p>
-            <b>Competitive results on both vision-language and hallucination task benchmarks</b>:
+            <b>Competitive results on hallucination, general vision-language, and synthetic data scaling benchmarks</b>:
           </p>
         </div>
-        <img id="model" width="75%" src="images/results.png">
+        <div class="result-table-list">
+          <figure class="result-table-card">
+            <img src="images/table-1-hallucination.png" alt="Table 1 hallucination evaluation results on MMHal-Bench, AMBER, and POPE">
+          </figure>
+          <figure class="result-table-card">
+            <img src="images/table-2-general-benchmark.png" alt="Table 2 general vision-language benchmark results on ScienceQA, MME, VizWiz, MMMU, SEED, and MM-Vet">
+          </figure>
+          <figure class="result-table-card result-table-compact">
+            <img src="images/table-3-ablation.png" alt="Table 3 object hallucination and POPE results across PDS-DPO dataset sizes">
+          </figure>
+        </div>
 
         <br>
 
       </div>
     </div>
 
+  </div>
+</section>
+
+<section class="section interpolation-panel">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-10">
+        <h2 class="title is-3">Dataset Analysis</h2>
+        <div class="content has-text-justified">
+          <p>
+            Additional diagnostics help characterize the synthetic preference data beyond benchmark scores. The plots summarize how prompt grounding varies by category, how often rejected responses are short or low-quality, and how response length differs between chosen and rejected outputs.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns analysis-grid">
+      <div class="column">
+        <figure class="analysis-card">
+          <img src="images/prompt-class-by-category.png" alt="Prompt Class by Category heatmap">
+          <figcaption><b>Prompt Class by Category.</b> Prompt grounding is category-dependent, with some domains leaning toward direct visual description and others mixing visual, interpretive, and commonsense requests.</figcaption>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="analysis-card">
+          <img src="images/response-length-distribution.png" alt="Response length distribution for chosen and rejected responses">
+          <figcaption><b>Response Length Distribution.</b> Chosen responses are generally longer and more complete, while rejected responses are more often short, generic, or incomplete.</figcaption>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="analysis-card">
+          <img src="images/hard-negative-composition.png" alt="Hard-negative composition of rejected responses">
+          <figcaption><b>Hard-Negative Composition.</b> Rejected responses include both easy negatives and fluent near-miss responses, which is useful for analyzing what the DPO signal may teach the model.</figcaption>
+        </figure>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -474,59 +571,6 @@
 </code></pre>
   </div>
 </section>
-
-<section class="section">
-  <!-- Results. -->
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3">Examples</h2>
-    </div>
-  </div>
-  <!--/ Results. -->
-  <div class="container is-max-desktop">
-
-    <!-- <section class="section"> -->
-    <!-- <div id="main">
-      <div align="center" ><div align="center" ><img src="demos/case1.png" width="75%" alt=""></div></div>
-      <div align="center" ><div align="center" ><img src="demos/case2.png" width="75%" alt=""></div></div>
-      <div align="center" ><div align="center" ><img src="demos/case3-1.png" width="75%" alt=""></div></div>
-      <div align="center" ><div align="center" ><img src="demos/case3-2.png" width="75%" alt=""></div></div>
-      <div align="center" ><div align="center" ><img src="demos/case4.png" width="75%" alt=""></div></div>
-      <div align="center" ><div align="center" ><img src="demos/case5.png" width="75%" alt=""></div></div>
-      <!-- <div class="box"><div class="pic"><img src="demos/p7.png" alt=""></div></div>
-      <div class="box"><div class="pic"><img src="demos/p8.png" alt=""></div></div>
-      <div class="box"><div class="pic"><img src="demos/p9.png" alt=""></div></div>
-    </div> -->
-
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-six-fifths">
-        <div class="content has-text-justified">
-          <ul>
-            <li><b>Short-form QA</b>: PDS-DPO can give a more trustworthy answer in short-form QA.</li>
-          </ul>
-        </div>
-        <img src="images/example-2.png" width="80%" alt="">
-        <div class="content has-text-justified">
-          <ul>
-            <li><b>Long-form QA</b>: PDS-DPO can generate more concise but informative answer.</li>
-          </ul>
-        </div>
-        <img src="images/example-1.png" width="40%" alt="">
-        <div class="content has-text-justified">
-          <ul>
-            <li><b>Long-form QA</b>: PDS-DPO can provide image description with detailed reasoning and less hallucinations.</li>
-          </ul>
-        </div>
-        <img src="images/example-3.png" width="80%" alt="">
-       
-      <!-- <div class="box"><div class="pic"><img src="demos/p7.png" alt=""></div></div>
-      <div class="box"><div class="pic"><img src="demos/p8.png" alt=""></div></div>
-      <div class="box"><div class="pic"><img src="demos/p9.png" alt=""></div></div> -->
-    </div>
-  </div>
-</section>
-
-
 
 <!--
 <section class="section" id="Acknowledgement">
