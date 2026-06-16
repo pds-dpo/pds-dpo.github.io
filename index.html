@@ -452,7 +452,7 @@
           </p>
           
         </div>
-        <img id="model" class="method-pipeline" width="100%" src="images/pipeline-updated.png" alt="Three-stage PDS-DPO framework for image rating, response rating, and DPO training">
+        <img id="model" class="method-pipeline" width="100%" src="images/pipeline-3.png" alt="Three-stage PDS-DPO framework for image rating, response rating, and DPO training">
         <figcaption style="font-style: italic; margin-top: 10px; margin-left:10px; text-align:justify">Starting with an initial text-to-image prompt, the Stable Diffusion model generates synthetic images. These images are then filtered using a reward model to exclude low-quality samples and retain only those with the highest scores. The selected images, along with their corresponding instruction prompts, serve as input for open-source MLLMs to generate responses. These responses are evaluated based on various criteria, and only the highest-scoring ones are selected to identify the most suitable positive and negative pairs for DPO-based training.</figcaption>
        <!--  <h3 class="subtitle has-text-centered">
           <p style="font-family:Times New Roman"></p>
